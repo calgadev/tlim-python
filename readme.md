@@ -10,7 +10,7 @@ Este projeto faz parte de um portifólio de migração de carreira (Analista -> 
 |-------|-------|--------|
 | Etapa 1 - MVP | Python + FastAPI + SQLite | Em desenvolvimento |
 | Etapa 2 - Reescrita | Java + Spring Boot + PostgreSQL | Pendente |
-| Etapa 3 = Frontend | React.js | Pendente|
+| Etapa 3 - Frontend | React.js | Pendente|
 
 ## Funcionalidades
 
@@ -62,10 +62,10 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [x] Configuração do banco de dados SQLite
 - [x] Modelos: Item, Creature, UserInventory, BestiaryEntry
 - [x] Seed data de itens e criaturas
-- [] Endpoints de listagem de itens e criaturas
-- [] parser JSON do Hunt Analyser
-- [] Parser de texto (Regex)
-- [] Motor de Decisão de Venda
-- [] Tracker de Bestiário
-- [] Calculadora de Charms
-- [] Interface HTML com Jinja2
+- [ ] Endpoints de listagem de itens e criaturas
+- [ ] parser JSON do Hunt Analyser
+- [ ] Parser de texto (Regex)
+- [ ] Motor de Decisão de Venda
+- [ ] Tracker de Bestiário
+- [ ] Calculadora de Charms
+- [ ] Interface HTML com Jinja2
