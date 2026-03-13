@@ -1,0 +1,66 @@
+[
+    {
+        "name": "Vampire Shield",
+        "weight": 65.0,
+        "npc_price": 12000,
+        "npc_seller": "Rashid",
+        "is_imbuement_material": false,
+        "imbuement_name": null
+    },
+    {
+        "name": "Centipede Leg",
+        "weight": 1.0,
+        "npc_price": 100,
+        "npc_seller": null,
+        "is_imbuement_material": true,
+        "imbuement_name": "Mana Leech"
+    },
+    {
+        "name": "Piece of Scarab Shell",
+        "weight": 1.0,
+        "npc_price": 100,
+        "npc_seller": null,
+        "is_imbuement_material": true,
+        "imbuement_name": "Mana Leech"
+    },
+    {
+        "name": "Rorc Feather",
+        "weight": 1.0,
+        "npc_price": 100,
+        "npc_seller": null,
+        "is_imbuement_material": true,
+        "imbuement_name": "Mana Leech"
+    },
+    {
+        "name": "Dragon Scale",
+        "weight": 12.0,
+        "npc_price": 500,
+        "npc_seller": "Yasir",
+        "is_imbuement_material": false,
+        "imbuement_name": null
+    },
+    {
+        "name": "Bog Raider Legs",
+        "weight": 18.0,
+        "npc_price": 800,
+        "npc_seller": "Rashid",
+        "is_imbuement_material": false,
+        "imbuement_name": null
+    },
+    {
+        "name": "Crown Legs",
+        "weight": 70.0,
+        "npc_price": 15000,
+        "npc_seller": "Rashid",
+        "is_imbuement_material": false,
+        "imbuement_name": null
+    },
+    {
+        "name": "Wyvern Talisman",
+        "weight": 3.0,
+        "npc_price": 150,
+        "npc_seller": null,
+        "is_imbuement_material": true,
+        "imbuement_name": "Void"
+    }
+]

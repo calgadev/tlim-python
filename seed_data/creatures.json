@@ -1,0 +1,52 @@
+[
+    {
+        "name": "Bog Raider",
+        "kills_required": 500,
+        "charm_points": 50
+    },
+    {
+        "name": "Dragon Lord",
+        "kills_required": 500,
+        "charm_points": 50
+    },
+    {
+        "name": "Vampire",
+        "kills_required": 500,
+        "charm_points": 25
+    },
+    {
+        "name": "Centipede",
+        "kills_required": 250,
+        "charm_points": 15
+    },
+    {
+        "name": "Rorc",
+        "kills_required": 250,
+        "charm_points": 15
+    },
+    {
+        "name": "Scarab",
+        "kills_required": 250,
+        "charm_points": 15
+    },
+    {
+        "name": "Wyvern",
+        "kills_required": 500,
+        "charm_points": 25
+    },
+    {
+        "name": "Dragon",
+        "kills_required": 500,
+        "charm_points": 25
+    },
+    {
+        "name": "Demon",
+        "kills_required": 1000,
+        "charm_points": 100
+    },
+    {
+        "name": "Hydra",
+        "kills_required": 500,
+        "charm_points": 50
+    }
+]
