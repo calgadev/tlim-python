@@ -8,17 +8,17 @@ Este projeto faz parte de um portifólio de migração de carreira (Analista -> 
 
 | Etapa | Stack | Status |
 |-------|-------|--------|
-| Etapa 1 - MVP | Python + FastAPI + SQLite | Em desenvolvimento |
-| Etapa 2 - Reescrita | Java + Spring Boot + PostgreSQL | Pendente |
-| Etapa 3 - Frontend | React.js | Pendente|
+| Etapa 1 - MVP | Python + FastAPI + SQLite | 🚧 Em desenvolvimento |
+| Etapa 2 - Reescrita | Java + Spring Boot + PostgreSQL | ⏳ Pendente |
+| Etapa 3 - Frontend | React.js | ⏳ Pendente|
 
 ## Funcionalidades
 
-- **Gestão de inventário** - Controle de itens para Imbuements, Quest, Addons e Weekly Task
-- **Motor de Decisão de Venda** - Compara preços NPC vs Market automaticamente
-- **Tracker de Bestiário** - Monitora kills e progresso de cada criatura
-- **Calculadora de Charms** - Sugere quais criaturas caças para atingir o charm desejado
-- **Importação de Hunt** - aceita JSON do Hunt Analyser ou texto colado do jogo
+- 📦 **Gestão de inventário** - Controle de itens para Imbuements, Quest, Addons e Weekly Task
+- 💰 **Motor de Decisão de Venda** - Compara preços NPC vs Market automaticamente
+- 🐾 **Tracker de Bestiário** - Monitora kills e progresso de cada criatura
+- ✨ **Calculadora de Charms** - Sugere quais criaturas caças para atingir o charm desejado
+- 📥 **Importação de Hunt** - aceita JSON do Hunt Analyser ou texto colado do jogo
 
 ## Tecnologias - Etapa 1
 
@@ -52,7 +52,7 @@ uvicorn main:app --reloar
 
 ```
 
-Acesse https://localhost:8000 para ver a aplicação
+Acesse https://localhost:8000 para ver a aplicação.
 Acesse http://localhost:8000/docs para a documentação interativa da API
 
 ## Status do Desenvolvimento
