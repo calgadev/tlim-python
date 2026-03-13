@@ -65,8 +65,7 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [] Endpoints de listagem de itens e criaturas
 - [] parser JSON do Hunt Analyser
 - [] Parser de texto (Regex)
-- Motor de Decisão de Venda
+- [] Motor de Decisão de Venda
 - [] Tracker de Bestiário
 - [] Calculadora de Charms
 - [] Interface HTML com Jinja2
-```
