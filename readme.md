@@ -62,9 +62,9 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [x] Configuração do banco de dados SQLite
 - [x] Modelos: Item, Creature, UserInventory, BestiaryEntry
 - [x] Seed data de itens e criaturas
-- [ ] Endpoints de listagem de itens e criaturas
-- [ ] parser JSON do Hunt Analyser
-- [ ] Parser de texto (Regex)
+- [x] Endpoints de listagem de itens e criaturas
+- [x] parser JSON do Hunt Analyser
+- [x] Parser de texto (Regex)
 - [ ] Motor de Decisão de Venda
 - [ ] Tracker de Bestiário
 - [ ] Calculadora de Charms
@@ -73,4 +73,4 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 ## Backlog -  Funcionalidades futuras
 
 ### Etapa 2 Java + Spring Boot
-[ ] **Weekly Task Tracker** - O jogo possui aproximadamente 460 itens que podem ser entregues em Delivery Task semanal. O sistema deverá identificar a adicionar essa decisão ao motor de decisão de vendas, para sinalizar ao jogador itens que ele pode guardar para tasks futuras
+- [ ] **Weekly Task Tracker** - O jogo possui aproximadamente 460 itens que podem ser entregues em Delivery Task semanal. O sistema deverá identificar a adicionar essa decisão ao motor de decisão de vendas, para sinalizar ao jogador itens que ele pode guardar para tasks futuras
