@@ -69,3 +69,8 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [ ] Tracker de Bestiário
 - [ ] Calculadora de Charms
 - [ ] Interface HTML com Jinja2
+
+## Backlog -  Funcionalidades futuras
+
+### Etapa 2 Java + Spring Boot
+[ ] **Weekly Task Tracker** - O jogo possui aproximadamente 460 itens que podem ser entregues em Delivery Task semanal. O sistema deverá identificar a adicionar essa decisão ao motor de decisão de vendas, para sinalizar ao jogador itens que ele pode guardar para tasks futuras
