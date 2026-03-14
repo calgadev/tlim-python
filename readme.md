@@ -63,9 +63,9 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [x] Modelos: Item, Creature, UserInventory, BestiaryEntry
 - [x] Seed data de itens e criaturas
 - [x] Endpoints de listagem de itens e criaturas
-- [x] parser JSON do Hunt Analyser
+- [x] Parser JSON do Hunt Analyser
 - [x] Parser de texto (Regex)
-- [ ] Motor de Decisão de Venda
+- [x] Motor de Decisão de Venda
 - [ ] Tracker de Bestiário
 - [ ] Calculadora de Charms
 - [ ] Interface HTML com Jinja2
