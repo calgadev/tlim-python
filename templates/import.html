@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Importar Hunt{% endblock %}
+
+{% block content %}
+<h1>📥 Importar Hunt</h1>
+
+{% if error %}
+<div class="alert alert-error">{{ error }}</div>
+{% endif %}
+
+<div class="grid-2">
+    <!-- Canal A: Upload JSON -->
+    <div class="card">
+        <h2>📂 Canal A — Arquivo JSON</h2>
+        <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.9rem;">
+            Importe o arquivo .json gerado pelo Hunt Analyser do Tibia.
+        </p>
+        <form action="/import/json" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".json" style="margin-bottom: 1rem;">
+            <br>
+            <button type="submit" class="btn btn-primary">Importar JSON</button>
+        </form>
+    </div>
+
+    <!-- Canal B: Quick Paste -->
+    <div class="card">
+        <h2>📋 Canal B — Quick Paste</h2>
+        <p style="color: #aaa; margin-bottom: 1rem; font-size: 0.9rem;">
+            Cole o log copiado diretamente do console do jogo.
+        </p>
+        <form action="/import/text" method="post">
+            <textarea name="text" rows="8" placeholder="Cole o log da hunt aqui...
+Ex: Loot of Bog Raider: a gold coin, a bog raider legs"></textarea>
+            <br><br>
+            <button type="submit" class="btn btn-primary">Importar Texto</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

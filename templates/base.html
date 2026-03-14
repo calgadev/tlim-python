@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}TLIM{% endblock %} — Tibia Loot & Inventory Manager</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #1a1a2e;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        nav {
+            background-color: #16213e;
+            border-bottom: 2px solid #c8a951;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+
+        .nav-brand {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #c8a951;
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 0.5rem; }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            padding: 0.4rem 1rem;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover { background-color: #0f3460; }
+        .nav-links a.active { background-color: #c8a951; color: #1a1a2e; font-weight: bold; }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        h1 { color: #c8a951; margin-bottom: 1.5rem; font-size: 1.8rem; }
+        h2 { color: #c8a951; margin-bottom: 1rem; font-size: 1.3rem; }
+
+        .card {
+            background-color: #16213e;
+            border: 1px solid #0f3460;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .badge-sell { background-color: #1e7d45; color: white; }
+        .badge-keep { background-color: #c25c00; color: white; }
+        .badge-check { background-color: #555; color: white; }
+        .badge-complete { background-color: #c8a951; color: #1a1a2e; }
+
+        .progress-bar-bg {
+            background-color: #0f3460;
+            border-radius: 4px;
+            height: 10px;
+            margin-top: 0.4rem;
+        }
+
+        .progress-bar-fill {
+            background-color: #c8a951;
+            height: 10px;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+
+        .progress-bar-fill.complete { background-color: #1e7d45; }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        .btn:hover { opacity: 0.85; }
+        .btn-primary { background-color: #c8a951; color: #1a1a2e; }
+        .btn-secondary { background-color: #0f3460; color: #e0e0e0; }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .stat-box {
+            background-color: #0f3460;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-box .value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #c8a951;
+        }
+
+        .stat-box .label {
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-top: 0.2rem;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        textarea, select, input {
+            background-color: #0f3460;
+            border: 1px solid #c8a951;
+            border-radius: 4px;
+            color: #e0e0e0;
+            padding: 0.5rem;
+            font-size: 0.95rem;
+            width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+        }
+
+        th {
+            background-color: #0f3460;
+            color: #c8a951;
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 0.6rem 0.8rem;
+            border-bottom: 1px solid #0f3460;
+            font-size: 0.9rem;
+        }
+
+        tr:hover { background-color: #0f3460; }
+
+        .alert {
+            padding: 0.8rem 1.2rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-success { background-color: #1e7d45; color: white; }
+        .alert-error { background-color: #7d1e1e; color: white; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-brand">⚔️ TLIM</a>
+        <div class="nav-links">
+            <a href="/" {% if active == 'dashboard' %}class="active"{% endif %}>Dashboard</a>
+            <a href="/import" {% if active == 'import' %}class="active"{% endif %}>Importar Hunt</a>
+            <a href="/bestiary" {% if active == 'bestiary' %}class="active"{% endif %}>Bestiário</a>
+            <a href="/inventory" {% if active == 'inventory' %}class="active"{% endif %}>Inventário</a>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

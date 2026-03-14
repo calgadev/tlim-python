@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1>⚔️ Dashboard</h1>
+
+<!-- Cards de resumo -->
+<div class="grid-4">
+    <div class="stat-box">
+        <div class="value">{{ total_items }}</div>
+        <div class="label">Tipos de Item</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ "{:,}".format(total_value).replace(",", ".") }}</div>
+        <div class="label">Valor Estimado (gp)</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ completed_creatures }}/{{ total_creatures }}</div>
+        <div class="label">Bestiário Completo</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ total_charm_points }}</div>
+        <div class="label">Charm Points</div>
+    </div>
+</div>
+
+{% if decisoes %}
+<!-- Relatório da última hunt -->
+<div class="card">
+    <h2>📋 Relatório da Última Hunt</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qtd</th>
+                <th>Decisão</th>
+                <th>Vender para</th>
+                <th>Motivo</th>
+                <th>Valor Est.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in decisoes %}
+            <tr>
+                <td>{{ d.name }}</td>
+                <td>{{ d.quantity }}</td>
+                <td>
+                    {% if d.decision == "VENDER" or d.decision == "VENDER NO MARKET" %}
+                        <span class="badge badge-sell">{{ d.decision }}</span>
+                    {% elif d.decision == "GUARDAR" %}
+                        <span class="badge badge-keep">{{ d.decision }}</span>
+                    {% else %}
+                        <span class="badge badge-check">{{ d.decision }}</span>
+                    {% endif %}
+                </td>
+                <td>{{ d.sell_to or "—" }}</td>
+                <td style="font-size: 0.85rem; color: #aaa;">{{ d.reason }}</td>
+                <td>{{ "{:,}".format(d.estimated_value).replace(",", ".") }} gp</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Atualizações do bestiário -->
+{% if bestiary_updates %}
+<div class="card">
+    <h2>🐾 Bestiário Atualizado</h2>
+    {% for b in bestiary_updates %}
+    <div style="margin-bottom: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span>
+                {{ b.creature }}
+                {% if b.completed %}
+                    <span class="badge badge-complete">COMPLETO! +{{ b.charm_points_earned }} pts</span>
+                {% endif %}
+            </span>
+            <span style="color: #aaa; font-size: 0.85rem;">
+                {{ b.kills_after }}/{{ b.total_required }}
+            </span>
+        </div>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill {% if b.completed %}complete{% endif %}"
+                 style="width: {{ [100, (b.kills_after / b.total_required * 100)|round(1)]|min }}%">
+            </div>
+        </div>
+        <div style="font-size: 0.8rem; color: #aaa; margin-top: 0.2rem;">
+            +{{ b.kills_after - b.kills_before }} kills nesta hunt
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% else %}
+<!-- Estado inicial sem hunt importada -->
+<div class="card" style="text-align: center; padding: 3rem;">
+    <div style="font-size: 3rem; margin-bottom: 1rem;">⚔️</div>
+    <h2 style="color: #aaa; font-weight: normal;">Nenhuma hunt importada ainda</h2>
+    <p style="color: #666; margin: 1rem 0;">Importe sua primeira hunt para ver o relatório aqui.</p>
+    <a href="/import" class="btn btn-primary">Importar Hunt</a>
+</div>
+{% endif %}
+{% endblock %}

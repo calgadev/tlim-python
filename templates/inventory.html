@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Inventário{% endblock %}
+
+{% block content %}
+<h1>📦 Inventário</h1>
+
+<!-- Resumo -->
+<div class="grid-2" style="margin-bottom: 1.5rem;">
+    <div class="stat-box">
+        <div class="value">{{ items|length }}</div>
+        <div class="label">Tipos de Item</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ "{:,}".format(total_value).replace(",", ".") }}</div>
+        <div class="label">Valor Estimado Total (gp)</div>
+    </div>
+</div>
+
+<!-- Definir meta -->
+<div class="card">
+    <h2>🎯 Definir Meta de Estoque</h2>
+    <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 1rem;">
+        Defina uma quantidade desejada para um item — o sistema vai recomendar guardar até atingir a meta.
+    </p>
+    <form action="/inventory/goal" method="post" style="display: flex; gap: 1rem; align-items: flex-end;">
+        <div style="flex: 1;">
+            <label style="font-size: 0.85rem; color: #aaa;">Nome do Item</label>
+            <input type="text" name="item_name" placeholder="Ex: Centipede Leg">
+        </div>
+        <div style="width: 150px;">
+            <label style="font-size: 0.85rem; color: #aaa;">Quantidade</label>
+            <input type="number" name="goal_quantity" min="0" placeholder="Ex: 100">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar Meta</button>
+    </form>
+    {% if goal_message %}
+    <div class="alert alert-success" style="margin-top: 1rem;">{{ goal_message }}</div>
+    {% endif %}
+    {% if goal_error %}
+    <div class="alert alert-error" style="margin-top: 1rem;">{{ goal_error }}</div>
+    {% endif %}
+</div>
+
+<!-- Lista de itens -->
+<div class="card">
+    <h2>🎒 Itens em Estoque</h2>
+    {% if items %}
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qtd</th>
+                <th>Meta</th>
+                <th>Tipo</th>
+                <th>NPC</th>
+                <th>Preço NPC</th>
+                <th>Valor Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in items %}
+            <tr>
+                <td>{{ i.item }}</td>
+                <td>{{ i.quantity }}</td>
+                <td>
+                    {% if i.goal_quantity > 0 %}
+                        {{ i.quantity }}/{{ i.goal_quantity }}
+                        {% if i.goal_reached %}
+                            <span class="badge badge-complete">✓</span>
+                        {% else %}
+                            <span class="badge badge-keep">falta {{ i.goal_quantity - i.quantity }}</span>
+                        {% endif %}
+                    {% else %}
+                        <span style="color: #555;">—</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if i.is_imbuement_material %}
+                        <span class="badge badge-keep">Imbuement</span>
+                        <span style="font-size: 0.8rem; color: #aaa;">{{ i.imbuement_name }}</span>
+                    {% else %}
+                        <span style="color: #555;">—</span>
+                    {% endif %}
+                </td>
+                <td>{{ i.npc_seller or "—" }}</td>
+                <td>{{ "{:,}".format(i.npc_price).replace(",", ".") }} gp</td>
+                <td>{{ "{:,}".format(i.estimated_value).replace(",", ".") }} gp</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p style="color: #aaa; text-align: center; padding: 2rem;">
+        Nenhum item no estoque ainda. Importe uma hunt para começar.
+    </p>
+    {% endif %}
+</div>
+{% endblock %}

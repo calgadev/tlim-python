@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Bestiário{% endblock %}
+
+{% block content %}
+<h1>🐾 Bestiário</h1>
+
+<!-- Resumo -->
+<div class="grid-4" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="stat-box">
+        <div class="value">{{ total_charm_points }}</div>
+        <div class="label">Charm Points Totais</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ creatures|selectattr("completed")|list|length }}</div>
+        <div class="label">Bestiários Completos</div>
+    </div>
+    <div class="stat-box">
+        <div class="value">{{ creatures|rejectattr("completed")|list|length }}</div>
+        <div class="label">Em Progresso</div>
+    </div>
+</div>
+
+<!-- Calculadora de Charms -->
+<div class="card">
+    <h2>✨ Calculadora de Charms</h2>
+    <form action="/bestiary/charm" method="get" style="display: flex; gap: 1rem; align-items: center;">
+        <select name="charm" style="max-width: 300px;">
+            <option value="">Selecione um charm...</option>
+            {% for charm in charms %}
+            <option value="{{ charm.name }}" {% if selected_charm == charm.name %}selected{% endif %}>
+                {{ charm.name }} — {{ charm.cost }} pts
+            </option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="btn btn-primary">Calcular</button>
+    </form>
+
+    {% if charm_result %}
+    <div style="margin-top: 1.5rem;">
+        <div class="grid-2" style="margin-bottom: 1rem;">
+            <div class="stat-box">
+                <div class="value">{{ charm_result.pontos_atuais }}</div>
+                <div class="label">Pontos Atuais</div>
+            </div>
+            <div class="stat-box">
+                <div class="value">{{ charm_result.pontos_faltando }}</div>
+                <div class="label">Pontos Faltando</div>
+            </div>
+        </div>
+
+        {% if charm_result.pode_comprar %}
+        <div class="alert alert-success">
+            ✅ Você já tem pontos suficientes para comprar o charm <strong>{{ charm_result.charm }}</strong>!
+        </div>
+        {% else %}
+        <h2>Criaturas Sugeridas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Criatura</th>
+                    <th>Kills Restantes</th>
+                    <th>Charm Points</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for s in charm_result.sugestoes %}
+                <tr>
+                    <td>{{ s.creature }}</td>
+                    <td>{{ s.kills_remaining }}</td>
+                    <td>{{ s.charm_points }}</td>
+                    <td>
+                        {% if s.status == "em progresso" %}
+                            <span class="badge badge-sell">em progresso</span>
+                        {% else %}
+                            <span class="badge badge-check">não iniciado</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+
+<!-- Lista de criaturas -->
+<div class="card">
+    <h2>📊 Progresso por Criatura</h2>
+    {% if creatures %}
+        {% for c in creatures %}
+        <div style="margin-bottom: 1.2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span>
+                    {{ c.creature }}
+                    {% if c.completed %}
+                        <span class="badge badge-complete">COMPLETO</span>
+                    {% endif %}
+                </span>
+                <span style="color: #aaa; font-size: 0.85rem;">
+                    {{ c.kills_current }}/{{ c.kills_required }}
+                    ({{ c.progress_percent }}%)
+                </span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill {% if c.completed %}complete{% endif %}"
+                     style="width: {{ c.progress_percent }}%">
+                </div>
+            </div>
+            <div style="font-size: 0.8rem; color: #aaa; margin-top: 0.2rem;">
+                {% if c.completed %}
+                    +{{ c.charm_points }} charm points ganhos
+                {% else %}
+                    Faltam {{ c.kills_remaining }} kills
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p style="color: #aaa; text-align: center; padding: 2rem;">
+            Nenhuma criatura rastreada ainda. Importe uma hunt para começar.
+        </p>
+    {% endif %}
+</div>
+{% endblock %}
