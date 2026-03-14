@@ -74,3 +74,7 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 
 ### Etapa 2 Java + Spring Boot
 - [ ] **Weekly Task Tracker** - O jogo possui aproximadamente 460 itens que podem ser entregues em Delivery Task semanal. O sistema deverá identificar a adicionar essa decisão ao motor de decisão de vendas, para sinalizar ao jogador itens que ele pode guardar para tasks futuras
+
+- [ ] **Sistema de Charms atualizado** — o sistema atual usa uma lista simplificada de charms. 
+A implementação completa deve contemplar: Major Charms e Minor Charms, cada um 
+com três níveis de custo progressivo.
