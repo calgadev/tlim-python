@@ -68,6 +68,7 @@ Acesse http://localhost:8000/docs para a documentação interativa da API
 - [x] Motor de Decisão de Venda
 - [x] Tracker de Bestiário
 - [x] Calculadora de Charms
+- [x] Endpoints de inventário
 - [ ] Interface HTML com Jinja2
 
 ## Backlog -  Funcionalidades futuras
